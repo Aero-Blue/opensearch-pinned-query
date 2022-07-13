@@ -26,7 +26,7 @@ public class RenamePluginIT extends OpenSearchIntegTestCase {
 
     @Override
     protected Collection<Class<? extends Plugin>> nodePlugins() {
-        return Collections.singletonList(RenamePlugin.class);
+        return Collections.singletonList(PinnedQueryPlugin.class);
     }
 
     public void testPluginInstalled() throws IOException {
