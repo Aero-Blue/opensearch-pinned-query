@@ -6,11 +6,11 @@ apply plugin: 'opensearch.opensearchplugin'
 apply plugin: 'opensearch.yaml-rest-test'
 apply plugin: 'opensearch.pluginzip'
 
-def pluginName = 'rename'
-def pluginDescription = 'Custom plugin'
-def projectPath = 'org.opensearch'
-def pathToPlugin = 'path.to.plugin'
-def pluginClassName = 'RenamePlugin'
+def pluginName = 'opensearch-pinned-query'
+def pluginDescription = 'Pinned query plugin'
+def projectPath = ''
+def pathToPlugin = 'pinnedquery'
+def pluginClassName = 'PinnedQueryPlugin'
 
 tasks.register("preparePluginPathDirs") {
     mustRunAfter clean
@@ -26,20 +26,20 @@ publishing {
     publications {
         pluginZip(MavenPublication) { publication ->
             pom {
-              name = pluginName
-              description = pluginDescription
-              licenses {
-                license {
-                  name = "The Apache License, Version 2.0"
-                  url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                name = pluginName
+                description = pluginDescription
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
                 }
-              }
-              developers {
-                developer {
-                  name = "OpenSearch"
-                  url = "https://github.com/opensearch-project/opensearch-plugin-template-java"
+                developers {
+                    developer {
+                        name = "OpenSearch"
+                        url = "https://github.com/opensearch-project/opensearch-plugin-template-java"
+                    }
                 }
-              }
             }
         }
     }
@@ -117,8 +117,9 @@ task updateVersion {
     doLast {
         ext.newVersion = System.getProperty('newVersion')
         println "Setting version to ${newVersion}."
-         // String tokenization to support -SNAPSHOT
+        // String tokenization to support -SNAPSHOT
         ant.replaceregexp(file:'build.gradle', match: '"opensearch.version", "\\d.*"', replace: '"opensearch.version", "' + newVersion.tokenize('-')[0] + '-SNAPSHOT"', flags:'g', byline:true)
     }
 }
+
 
