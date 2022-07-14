@@ -12,16 +12,6 @@ def projectPath = 'org.opensearch'
 def pathToPlugin = 'pinnedquery'
 def pluginClassName = 'PinnedQueryPlugin'
 
-tasks.register("preparePluginPathDirs") {
-    mustRunAfter clean
-    doLast {
-        def newPath = pathToPlugin.replace(".", "/")
-        mkdir "src/main/java/org/opensearch/$newPath"
-        mkdir "src/test/java/org/opensearch/$newPath"
-        mkdir "src/yamlRestTest/java/org/opensearch/$newPath"
-    }
-}
-
 publishing {
     publications {
         pluginZip(MavenPublication) { publication ->
