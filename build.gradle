@@ -8,7 +8,7 @@ apply plugin: 'opensearch.pluginzip'
 
 def pluginName = 'opensearch-pinned-query'
 def pluginDescription = 'Pinned query plugin'
-def projectPath = ''
+def projectPath = 'org.opensearch'
 def pathToPlugin = 'pinnedquery'
 def pluginClassName = 'PinnedQueryPlugin'
 

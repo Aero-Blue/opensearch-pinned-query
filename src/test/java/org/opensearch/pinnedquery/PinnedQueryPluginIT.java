@@ -35,6 +35,6 @@ public class PinnedQueryPluginIT extends OpenSearchIntegTestCase {
         String body = EntityUtils.toString(response.getEntity());
 
         logger.info("response body: {}", body);
-        assertThat(body, containsString("rename"));
+        assertThat(body, containsString("opensearch-pinned-query"));
     }
 }
