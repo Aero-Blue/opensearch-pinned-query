@@ -15,17 +15,17 @@ import java.io.IOException;
 import java.util.List;
 
 public class PinnedQueryBuilder extends AbstractQueryBuilder<PinnedQueryBuilder> {
-    public static final String NAME = "pinned-query";
-    private static final ParseField FIELD_PINNED_RESULTS = new ParseField("pinned_results");
+    public static final String NAME = "pinned";
+    private static final ParseField FIELD_PINNED_IDS = new ParseField("ids");
 
     private static final ObjectParser<PinnedQueryBuilder, Void> PARSER = new ObjectParser<>(NAME, PinnedQueryBuilder::new);
 
     static {
         declareStandardFields(PARSER);
-        PARSER.declareStringArray(PinnedQueryBuilder::setPinnedResults, FIELD_PINNED_RESULTS);
+        PARSER.declareStringArray(PinnedQueryBuilder::setPinnedIds, FIELD_PINNED_IDS);
     }
 
-    private List<String> pinnedResults;
+    private List<String> pinnedIds;
 
     public PinnedQueryBuilder() {
 
@@ -33,7 +33,7 @@ public class PinnedQueryBuilder extends AbstractQueryBuilder<PinnedQueryBuilder>
 
     public PinnedQueryBuilder(StreamInput in) throws IOException {
         super(in);
-        setPinnedResults(in.readOptionalStringList());
+        setPinnedIds(in.readOptionalStringList());
     }
 
     public static PinnedQueryBuilder fromXContent(final XContentParser parser) {
@@ -77,11 +77,11 @@ public class PinnedQueryBuilder extends AbstractQueryBuilder<PinnedQueryBuilder>
         return null;
     }
 
-    public void setPinnedResults(final List<String> pinnedResults) {
-        if (pinnedResults == null) {
+    public void setPinnedIds(final List<String> pinnedIds) {
+        if (pinnedIds == null) {
             throw new IllegalArgumentException("Pinned results must not be null");
         }
-        this.pinnedResults = pinnedResults;
+        this.pinnedIds = pinnedIds;
     }
 
 }
