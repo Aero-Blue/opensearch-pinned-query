@@ -5,4 +5,4 @@
         h: component
 
   - match:
-      $body: /^opensearch-pinned-query\n$/
+      $body: /^rename\n$/

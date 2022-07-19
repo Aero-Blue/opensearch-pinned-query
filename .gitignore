@@ -1,6 +1,3 @@
-# custom local files
-load-test-data.sh
-test-data.json
 
 # intellij files
 .idea/
